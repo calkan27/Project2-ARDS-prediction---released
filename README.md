@@ -9,9 +9,13 @@ In this notebook, we'll show an example of how to fine-tune Llama-2-7b to make p
 By the end of this example, you will have gained a comprehensive understanding of the following key aspects:
 
 Ludwig: An intuitive toolkit that simplifies fine-tuning for open-source Language Model Models (LLMs).
+
 Exploring the base model with prompts: Dive into the intricacies of prompts and prompt templates, unlocking new dimensions in LLM interaction.
+
 Fine-Tuning Large Language Models: Navigate the world of model fine-tuning optimizations for getting the most out of a single memory-contrained GPU, including: LoRA and 4-bit quantization.
+
 Goal: Use LLMs For Medical-Case Prediction 🏥
+
 In this webinar, the goal is to use an LLM for prediction. The model will take natural language as input, and should return true(ARDS patient)/false(Non-ARDS patient) as output. We're first going to iterate on a base Llama-2-7b model with prompting, and finally instruction-fine-tune the model.
 
 As an example, if we prompt the model with this instruction:

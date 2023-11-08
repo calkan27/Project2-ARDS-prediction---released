@@ -53,20 +53,34 @@ is a simple Ludwig config that tells Ludwig to use the column called instruction
 To make Ludwig compatible with LLMs, Ludwig 0.8 introduced a new model_type called llm and a new keyword base_model that must be specified:
 
 >model_type: llm
-base_model: meta-llama/Llama-2-7b-hf
-input_features:
-  - name: instruction
-    type: text
-output_features:
-  - name: output
-    type: text
+>
+>base_model: meta-llama/Llama-2-7b-hf
+>
+>input_features:
+>
+>  - name: instruction
+>    type: text
+>    
+> output_features:
+>
+> - name: output
+>
+> - type: text
+    
+    
 The model_type parameter indicates is used to tell Ludwig you want to use the LLM model type (Ludwig supports LLMs, general deep neural networks and trees). The base_model parameter is the path to any HuggingFace CausalLM listed here.
 
 For this webinar, we're going to make use of the Python LudwigModel API. This requires just one main object during initialization: a YAML config defining your training pipeline. The initialized LudwigModel object then exposes a variety of methods like preprocess(), train(), evaluate() and predict(). We will see this in practice in the next few sections.
-Basic Setup 🧰
+
+## Basic Setup 🧰
+
 We're going to install Ludwig, setup our HuggingFace Token and load our dataset that we will be running experiments with.
-Install Ludwig and Ludwig's LLM related dependencies.
+
+# Install Ludwig and Ludwig's LLM related dependencies.
+
 Install Ludwig from the latest release
+
+'''
 !pip uninstall -y tensorflow --quiet
 !pip install ludwig
 !pip install ludwig[llm]
@@ -112,22 +126,37 @@ DEPRECATION: git+https://github.com/ludwig-ai/ludwig.git@master#egg=ludwig[llm] 
      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 258.1/258.1 kB 24.8 MB/s eta 0:00:00
      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 85.6/85.6 kB 11.9 MB/s eta 0:00:00
   Building wheel for sentence-transformers (setup.py) ... done
-  Enable text wrapping so we don't have to scroll horizontally and create a function to flush CUDA cache.
+  '''
   
+Enable text wrapping so we don't have to scroll horizontally and create a function to flush CUDA cache.
+
+  '''
   from IPython.display import HTML, display
 
 def set_css():
+
   display(HTML('''
+  
   <style>
+    
     pre {
+      
         white-space: pre-wrap;
+      
     }
+    
   </style>
+  
   '''))
 
 get_ipython().events.register('pre_run_cell', set_css)
 
 def clear_cache():
+
   if torch.cuda.is_available():
+  
     model = None
+    
     torch.cuda.empty_cache()
+    
+  '''

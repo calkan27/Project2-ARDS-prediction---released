@@ -1,4 +1,4 @@
-### Project 2
+# Project 2
 
 Acute respiratory distress syndrome (ARDS) is a serious lung condition that causes low blood oxygen. In this project, you need to make a preidction about if the patient has ARDS based on their medical notes. Each patient may have multiple notes.
 
@@ -8,13 +8,13 @@ In this notebook, we'll show an example of how to fine-tune Llama-2-7b to make p
 
 By the end of this example, you will have gained a comprehensive understanding of the following key aspects:
 
-# Ludwig:
+### Ludwig:
 An intuitive toolkit that simplifies fine-tuning for open-source Language Model Models (LLMs).
 
-# Exploring the base model with prompts: 
+### Exploring the base model with prompts: 
 Dive into the intricacies of prompts and prompt templates, unlocking new dimensions in LLM interaction.
 
-# Fine-Tuning Large Language Models:
+### Fine-Tuning Large Language Models:
 Navigate the world of model fine-tuning optimizations for getting the most out of a single memory-contrained GPU, including: LoRA and 4-bit quantization.
 
 ## Goal: Use LLMs For Medical-Case Prediction 🏥
@@ -29,7 +29,7 @@ As an example, if we prompt the model with this instruction:
 
 We want the model to produce exactly this response:
 
-Response: true
+> Response: true
 A Quick 2 Minute Introduction To Ludwig ⏰
 Every Ludwig model is based on a config, which requires at least input feature and one output feature to be defined. For example,
 

@@ -81,53 +81,94 @@ We're going to install Ludwig, setup our HuggingFace Token and load our dataset 
 Install Ludwig from the latest release
 
 '''
-
 !pip uninstall -y tensorflow --quiet
+
 !pip install ludwig
+
 !pip install ludwig[llm]
+
 Installing build dependencies ... done
+
   Getting requirements to build wheel ... done
+  
   Preparing metadata (pyproject.toml) ... done
+  
      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 7.7/7.7 MB 22.9 MB/s eta 0:00:00
+     
      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 3.8/3.8 MB 60.6 MB/s eta 0:00:00
+     
      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 682.2/682.2 kB 44.0 MB/s eta 0:00:00
+     
      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 80.8/80.8 kB 10.7 MB/s eta 0:00:00
+     
      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 49.4/49.4 kB 5.4 MB/s eta 0:00:00
+     
      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 519.2/519.2 kB 48.4 MB/s eta 0:00:00
+     
      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 280.2/280.2 kB 31.1 MB/s eta 0:00:00
+     
      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 98.1/98.1 kB 14.3 MB/s eta 0:00:00
+     
   Installing build dependencies ... done
+  
   Getting requirements to build wheel ... done
+  
   Preparing metadata (pyproject.toml) ... done
+  
      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 232.0/232.0 kB 26.2 MB/s eta 0:00:00
+     
      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 880.6/880.6 kB 49.8 MB/s eta 0:00:00
+     
   Preparing metadata (setup.py) ... done
+  
      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.3/1.3 MB 65.7 MB/s eta 0:00:00
+     
      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 17.9/17.9 MB 79.6 MB/s eta 0:00:00
+     
      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 92.5/92.5 MB 9.1 MB/s eta 0:00:00
      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100.0/100.0 kB 13.6 MB/s eta 0:00:00
+     
      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 154.3/154.3 kB 22.0 MB/s eta 0:00:00
+     
      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 57.5/57.5 kB 8.1 MB/s eta 0:00:00
+     
      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 51.1/51.1 kB 7.6 MB/s eta 0:00:00
+     
      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 268.8/268.8 kB 33.4 MB/s eta 0:00:00
+     
      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.3/1.3 MB 83.4 MB/s eta 0:00:00
+     
      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 62.5/62.5 kB 9.1 MB/s eta 0:00:00
+     
      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 58.4/58.4 kB 8.4 MB/s eta 0:00:00
+     
      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 98.7/98.7 kB 14.2 MB/s eta 0:00:00
+     
   Building wheel for ludwig (pyproject.toml) ... done
-  Building wheel for gpustat (pyproject.toml) ... done
-  Building wheel for sacremoses (setup.py) ... done
-DEPRECATION: git+https://github.com/ludwig-ai/ludwig.git@master#egg=ludwig[llm] contains an egg fragment with a non-PEP 508 name pip 25.0 will enforce this behaviour change. A possible replacement is to use the req @ url syntax, and remove the egg fragment. Discussion can be found at https://github.com/pypa/pip/issues/11617
-  Installing build dependencies ... done
-  Getting requirements to build wheel ... done
-  Preparing metadata (pyproject.toml) ... done
-     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 86.0/86.0 kB 2.7 MB/s eta 0:00:00
-  Preparing metadata (setup.py) ... done
-     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 17.6/17.6 MB 24.7 MB/s eta 0:00:00
-     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 258.1/258.1 kB 24.8 MB/s eta 0:00:00
-     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 85.6/85.6 kB 11.9 MB/s eta 0:00:00
-  Building wheel for sentence-transformers (setup.py) ... done
   
+  Building wheel for gpustat (pyproject.toml) ... done
+  
+  Building wheel for sacremoses (setup.py) ... done
+  
+DEPRECATION: git+https://github.com/ludwig-ai/ludwig.git@master#egg=ludwig[llm] contains an egg fragment with a non-PEP 508 name pip 25.0 will enforce this behaviour change. A possible replacement is to use the req @ url syntax, and remove the egg fragment. Discussion can be found at https://github.com/pypa/pip/issues/11617
+
+  Installing build dependencies ... done
+  
+  Getting requirements to build wheel ... done
+  
+  Preparing metadata (pyproject.toml) ... done
+  
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 86.0/86.0 kB 2.7 MB/s eta 0:00:00
+     
+  Preparing metadata (setup.py) ... done
+  
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 17.6/17.6 MB 24.7 MB/s eta 0:00:00
+     
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 258.1/258.1 kB 24.8 MB/s eta 0:00:00
+     
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 85.6/85.6 kB 11.9 MB/s eta 0:00:00
+     
+  Building wheel for sentence-transformers (setup.py) ... done
   '''
   
 Enable text wrapping so we don't have to scroll horizontally and create a function to flush CUDA cache.

@@ -37,10 +37,15 @@ We want the model to produce exactly this response:
 Every Ludwig model is based on a config, which requires at least input feature and one output feature to be defined. For example,
 
 > input_features:
+> 
 >  - name: instruction
+>    
 >    type: text
+>    
 >output_features:
+> 
 > - name: output
+> - 
 >    type: text
 
 is a simple Ludwig config that tells Ludwig to use the column called instruction in our dataset as an input feature and the output column in our dataset as an output feature. This is the simplest Ludwig config we can define - it's just 6 lines and works out of the box!

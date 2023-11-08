@@ -1,5 +1,4 @@
-### Project2-ARDS-prediction---released
-## Project 2
+### Project 2
 
 Acute respiratory distress syndrome (ARDS) is a serious lung condition that causes low blood oxygen. In this project, you need to make a preidction about if the patient has ARDS based on their medical notes. Each patient may have multiple notes.
 

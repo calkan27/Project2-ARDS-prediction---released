@@ -80,7 +80,7 @@ We're going to install Ludwig, setup our HuggingFace Token and load our dataset 
 
 Install Ludwig from the latest release
 
-'''
+```
 !pip uninstall -y tensorflow --quiet
 
 !pip install ludwig
@@ -169,11 +169,11 @@ DEPRECATION: git+https://github.com/ludwig-ai/ludwig.git@master#egg=ludwig[llm] 
      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 85.6/85.6 kB 11.9 MB/s eta 0:00:00
      
   Building wheel for sentence-transformers (setup.py) ... done
-  '''
+  ```
   
 Enable text wrapping so we don't have to scroll horizontally and create a function to flush CUDA cache.
 
-  '''
+  ```
   from IPython.display import HTML, display
 
 def set_css():
@@ -202,4 +202,4 @@ def clear_cache():
     
     torch.cuda.empty_cache()
     
-  '''
+  ```

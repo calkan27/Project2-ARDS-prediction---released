@@ -203,3 +203,46 @@ def clear_cache():
     torch.cuda.empty_cache()
     
   ```
+
+# Setup Your HuggingFace Token 🤗
+We'll be exploring Llama-2 today, which a model released by Meta. However, the model is not openly-accessible and requires requesting for access (assigned to your HuggingFace READ token).
+
+Obtain a HuggingFace API Token and request access to Llama2-7b-hf before proceeding. You may need to signup on HuggingFace if you don't aleady have an account: https://huggingface.co/join
+
+Incase you haven't been given access to Llama-2-7b, that is alright. We can just use Llama-1 for the rest of this example: huggyllama/llama-7b.
+
+```
+import getpass
+
+import locale; locale.getpreferredencoding = lambda: "UTF-8"
+
+import logging
+
+import os
+
+import torch
+
+import yaml
+
+from ludwig.api import LudwigModel
+
+
+os.environ["HUGGING_FACE_HUB_TOKEN"] = getpass.getpass("Input Your Huggingface READ Token:")
+
+assert os.environ["HUGGING_FACE_HUB_TOKEN"]
+```
+
+### Before you run the next cells, please manually upload the data file to google drive.
+
+Mount google drive to colab so we can access the dataset.
+
+```
+from google.colab import drive
+drive.mount('/content/drive')
+
+```
+
+## Import The ARDS Dataset 📋
+
+If you can't load the dataset, please check if you have mounted google drive, and if the file name/path is correct.
+

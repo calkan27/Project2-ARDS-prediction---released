@@ -553,3 +553,142 @@ INFO:ludwig.api:
 | torch_version | '2.0.1+cu118' | 
 | compute | {'gpu_type': 'Tesla T4', 'gpus_per_node': 1, 'num_nodes': 1} |
 
+INFO:ludwig.utils.print_utils:
+
+INFO:ludwig.utils.print_utils:╒═══════════════╕
+
+INFO:ludwig.utils.print_utils:│ LUDWIG CONFIG │
+
+INFO:ludwig.utils.print_utils:╘═══════════════╛
+
+INFO:ludwig.utils.print_utils:
+
+INFO:ludwig.api:User-specified config (with upgrades):
+
+INFO:ludwig.api:{   'adapter': {'r': 4, 'type': 'lora'},
+
+    'base_model': 'meta-llama/Llama-2-7b-hf',
+    
+    'generation': {'max_new_tokens': 10, 'temperature': 0},
+    
+    'input_features': [{'name': 'instruction', 'type': 'text'}],
+    
+    'ludwig_version': '0.8',
+    
+    'model_type': 'llm',
+    
+    'output_features': [{'name': 'output', 'type': 'text'}],
+    
+    'prompt': {   'template': 'Below is an instruction that describes a task, '
+    
+                              'paired with an input that may provide further '
+                              
+                              'context. Write a response that appropriately '
+                              
+                              'completes the request.\n'
+                              
+                              '### Instruction: {instruction}\n'
+                              
+                              '### Input: {input}\n'
+                              
+                              '### Response:'},
+                              
+    'quantization': {'bits': 4},
+    
+    'trainer': {   'batch_size': 1,
+    
+                   'epochs': 1,
+                   
+                   'eval_batch_size': 1,
+                   
+                   'gradient_accumulation_steps': 16,
+                   
+                   'learning_rate': 1e-05,
+                   
+                   'learning_rate_scheduler': {   'reduce_on_plateau': 0,
+                   
+                                                  'warmup_fraction': 0.03},
+                                                  
+                   'optimizer': {   'params': {   'betas': [0.9, 0.999],
+                   
+                                                  'eps': 1e-08,
+                                                  
+                                                  'weight_decay': 0},
+                                                  
+                                    'type': 'adam'},
+                                    
+                   'type': 'finetune'}}
+INFO:ludwig.api:
+
+Full config saved to:
+
+/content/results/api_experiment_run/api_experiment/model/model_hyperparameters.json
+
+INFO:ludwig.utils.print_utils:
+
+INFO:ludwig.utils.print_utils:╒═══════════════╕
+
+INFO:ludwig.utils.print_utils:│ PREPROCESSING │
+
+INFO:ludwig.utils.print_utils:╘═══════════════╛
+
+INFO:ludwig.utils.print_utils:
+
+INFO:ludwig.data.preprocessing:No cached dataset found at /content/821304a663c111eebb320242ac1c000c.training.hdf5. Preprocessing the dataset.
+
+INFO:ludwig.data.preprocessing:Using full dataframe
+
+INFO:ludwig.data.preprocessing:Building dataset (it may take a while)
+
+INFO:ludwig.utils.tokenizers:Loaded HuggingFace implementation of meta-llama/Llama-2-7b-hf tokenizer
+
+WARNING:ludwig.utils.tokenizers:No padding token id found. Using eos_token as pad_token.
+
+Asking to truncate to max_length but no maximum length is provided and the model has no predefined maximum length. Default to no truncation.
+
+INFO:ludwig.features.text_feature:Max length of feature 'None': 522 (without start and stop symbols)
+
+INFO:ludwig.features.text_feature:Setting max length using dataset: 524 (including start and stop symbols)
+
+INFO:ludwig.features.text_feature:max sequence length is 524 for feature 'None'
+
+INFO:ludwig.utils.tokenizers:Loaded HuggingFace implementation of meta-llama/Llama-2-7b-hf tokenizer
+
+WARNING:ludwig.utils.tokenizers:No padding token id found. Using eos_token as pad_token.
+
+Asking to truncate to max_length but no maximum length is provided and the model has no predefined maximum length. Default to no truncation.
+
+INFO:ludwig.features.text_feature:Max length of feature 'output': 2 (without start and stop symbols)
+
+INFO:ludwig.features.text_feature:Setting max length using dataset: 4 (including start and stop symbols)
+
+INFO:ludwig.features.text_feature:max sequence length is 4 for feature 'output'
+
+INFO:ludwig.utils.tokenizers:Loaded HuggingFace implementation of meta-llama/Llama-2-7b-hf tokenizer
+
+WARNING:ludwig.utils.tokenizers:No padding token id found. Using eos_token as pad_token.
+
+Asking to truncate to max_length but no maximum length is provided and the model has no predefined maximum length. Default to no truncation.
+
+INFO:ludwig.utils.tokenizers:Loaded HuggingFace implementation of meta-llama/Llama-2-7b-hf tokenizer
+
+WARNING:ludwig.utils.tokenizers:No padding token id found. Using eos_token as pad_token.
+
+Asking to truncate to max_length but no maximum length is provided and the model has no predefined maximum length. Default to no truncation.
+
+INFO:ludwig.data.preprocessing:Building dataset: DONE
+
+INFO:ludwig.data.cache.manager:Writing preprocessed training set cache to /content/821304a663c111eebb320242ac1c000c.training.hdf5
+
+INFO:ludwig.data.cache.manager:Writing preprocessed validation set cache to /content/821304a663c111eebb320242ac1c000c.validation.hdf5
+
+INFO:ludwig.data.cache.manager:Writing preprocessed test set cache to /content/821304a663c111eebb320242ac1c000c.test.hdf5
+
+INFO:ludwig.data.cache.manager:Writing train set metadata to /content/821304a663c111eebb320242ac1c000c.meta.json
+
+INFO:ludwig.api:
+
+Dataset Statistics
+
+INFO:ludwig.api:
+

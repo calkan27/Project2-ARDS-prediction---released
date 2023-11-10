@@ -523,3 +523,15 @@ model = LudwigModel(config=qlora_fine_tuning_config, logging_level=logging.INFO)
 results = model.train(dataset=df_train)
 
 ```
+
+Downloading (…)lve/main/config.json: 100%
+
+609/609 [00:00<00:00, 31.5kB/s]
+
+INFO:ludwig.utils.print_utils:
+
+INFO:ludwig.utils.print_utils:╒════════════════════════╕
+INFO:ludwig.utils.print_utils:│ EXPERIMENT DESCRIPTION │
+INFO:ludwig.utils.print_utils:╘════════════════════════╛
+INFO:ludwig.utils.print_utils:
+INFO:ludwig.api

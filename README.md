@@ -757,18 +757,23 @@ Training:   6%|▌         | 346/5726 [07:10<1:52:30,  1.25s/it, loss=0.699]
 ---------------------------------------------------------------------------
 
 FileNotFoundError                         Traceback (most recent call last)
-
 <ipython-input-11-0258379b8add> in <cell line: 62>()
+60 
+61 model = LudwigModel(config=qlora_fine_tuning_config, logging_level=logging.INFO)
+62 results = model.train(dataset=df_train)
 
-     60 
-     61 model = LudwigModel(config=qlora_fine_tuning_config, logging_level=logging.INFO)
----> 62 results = model.train(dataset=df_train)
 /usr/local/lib/python3.10/dist-packages/torch/serialization.py in __init__(self, name, mode)
+
     250 class _open_file(_opener):
+    
     251     def __init__(self, name, mode):
+    
 --> 252         super().__init__(open(name, mode))
+
     253  
+    
     254     def __exit__(self, *args):
+    
 FileNotFoundError: [Errno 2] No such file or directory: '/content/results/api_experiment_run/model/training_checkpoints/best.ckpt'
 
 ## Perform Inference

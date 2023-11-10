@@ -765,18 +765,18 @@ FileNotFoundError                         Traceback (most recent call last)
 
 62 results = model.train(dataset=df_train)
 
-/usr/local/lib/python3.10/dist-packages/torch/serialization.py in __init__(self, name, mode)
+/usr/local/lib/python3.10/dist-packages/torch/serialization.py in init(self, name, mode)
 
-    250 class _open_file(_opener):
-    
-    251     def __init__(self, name, mode):
-    
---> 252         super().__init__(open(name, mode))
+250 class _open_file(_opener):
 
-    253  
-    
-    254     def __exit__(self, *args):
-    
+251 def init(self, name, mode):
+
+--> 252 super().init(open(name, mode))
+
+253
+
+254 def exit(self, *args):
+
 FileNotFoundError: [Errno 2] No such file or directory: '/content/results/api_experiment_run/model/training_checkpoints/best.ckpt'
 
 ## Perform Inference

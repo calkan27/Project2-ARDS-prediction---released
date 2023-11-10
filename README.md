@@ -325,4 +325,19 @@ This dataset is meant to train a large language model to following instructions 
 - input when additional context is required for the instruction, and
 - the expected output.
 
+> Instruction: "Based on the provided context, return true if the pation has ARDS, otherwise return false."
+> Input: #MEDICAL NOTES FOR THE PATIENT#
+> Output: True
+
+We need to prepare the instruction and output for our dataset. We treat the output as strings.
+
+```
+DEMO_PROMPT = "Based on the following medical notes, please predict whether the patient described is likely to have Acute Respiratory Distress Syndrome (ARDS). Your prediction should be either 'true' if ARDS is likely, or 'false' if it is not likely."
+df['instruction'] = DEMO_PROMPT
+df = df.rename(columns={'text':'notes', 'label':'output'})
+df = df.astype({'output':'str'})
+df.head(1)
+
+```
+
 

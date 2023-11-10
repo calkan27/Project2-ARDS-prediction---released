@@ -526,259 +526,260 @@ results = model.train(dataset=df_train)
 ```
 
 > Downloading (…)lve/main/config.json: 100%
-
+>
 > 609/609 [00:00<00:00, 31.5kB/s]
-
+>
 > INFO:ludwig.utils.print_utils:
-
+>
 > INFO:ludwig.utils.print_utils:  ╒════════════════════════╕
-
+>
 > INFO:ludwig.utils.print_utils:  │ EXPERIMENT DESCRIPTION │
-
+>
 > INFO:ludwig.utils.print_utils:  ╘════════════════════════╛
-
+>
 > INFO:ludwig.utils.print_utils:
+>
+> INFO:ludwig.utils.print_utils:
+>
+> INFO:ludwig.api:
+>
+> | Experiment name | api_experiment |
+> | ----- | ----- |
+> | Model name | run |
+> | Output directory | /content/results/api_experiment_run |
+> | ludwig_version  | '0.8' | 
+> | command | ('/usr/local/lib/python3.10/dist-packages/colab_kernel_launcher.py -f ' '/root/.local/share/jupyter/runtime/kernel-4d76683b-8813-4c48-add3-d63c3a84a92d.json') | 
+> | random_seed | 42 | 
+> | data_format | "<class 'pandas.core.frame.DataFrame'>" | 
+> | torch_version | '2.0.1+cu118' | 
+> | compute | {'gpu_type': 'Tesla T4', 'gpus_per_node': 1, 'num_nodes': 1} |
+>
+> INFO:ludwig.utils.print_utils:
+>
+> INFO:ludwig.utils.print_utils:╒═══════════════╕
+>
+> INFO:ludwig.utils.print_utils:│ LUDWIG CONFIG │
+>
+> INFO:ludwig.utils.print_utils:╘═══════════════╛
+>
+> INFO:ludwig.utils.print_utils:
+>
+> INFO:ludwig.api:User-specified config (with upgrades):
+>
+> INFO:ludwig.api:{   'adapter': {'r': 4, 'type': 'lora'},
+>
+>     'base_model': 'meta-llama/Llama-2-7b-hf',
+>     
+>     'generation': {'max_new_tokens': 10, 'temperature': 0},
+>     
+>     'input_features': [{'name': 'instruction', 'type': 'text'}],
+>     
+>     'ludwig_version': '0.8',
+>     
+>     'model_type': 'llm',
+>     
+>     'output_features': [{'name': 'output', 'type': 'text'}],
+>     
+>     'prompt': {   'template': 'Below is an instruction that describes a task, '
+>     
+>                               'paired with an input that may provide further '
+>                               
+>                               'context. Write a response that appropriately '
+>                               
+>                               'completes the request.\n'
+>                               
+>                               '### Instruction: {instruction}\n'
+>                               
+>                               '### Input: {input}\n'
+>                               
+>                               '### Response:'},
+>                               
+>     'quantization': {'bits': 4},
+>     
+>     'trainer': {   'batch_size': 1,
+>     
+>                    'epochs': 1,
+>                    
+>                    'eval_batch_size': 1,
+>                    
+>                    'gradient_accumulation_steps': 16,
+>                    
+>                    'learning_rate': 1e-05,
+>                    
+>                    'learning_rate_scheduler': {   'reduce_on_plateau': 0,
+>                    
+>                                                   'warmup_fraction': 0.03},
+>                                                  
+>                    'optimizer': {   'params': {   'betas': [0.9, 0.999],
+>                    
+>                                                   'eps': 1e-08,
+>                                                   
+>                                                   'weight_decay': 0},
+>                                                   
+>                                     'type': 'adam'},
+>                                     
+>                    'type': 'finetune'}}
+> INFO:ludwig.api:
+>
+> Full config saved to:
+>
+> /content/results/api_experiment_run/api_experiment/model/model_hyperparameters.json
+>
+> INFO:ludwig.utils.print_utils:
+>
+> INFO:ludwig.utils.print_utils:╒═══════════════╕
+>
+> INFO:ludwig.utils.print_utils:│ PREPROCESSING │
+>
+> INFO:ludwig.utils.print_utils:╘═══════════════╛
+>
+> INFO:ludwig.utils.print_utils:
+>
+> INFO:ludwig.data.preprocessing:No cached dataset found at /content/821304a663c111eebb320242ac1c000c.training.hdf5. Preprocessing the dataset.
+>
+> INFO:ludwig.data.preprocessing:Using full dataframe
+>
+> INFO:ludwig.data.preprocessing:Building dataset (it may take a while)
+>
+> INFO:ludwig.utils.tokenizers:Loaded HuggingFace implementation of meta-llama/Llama-2-7b-hf tokenizer
+>
+> WARNING:ludwig.utils.tokenizers:No padding token id found. Using eos_token as pad_token.
+>
+> Asking to truncate to max_length but no maximum length is provided and the model has no predefined maximum length. Default to no truncation.
+>
+> INFO:ludwig.features.text_feature:Max length of feature 'None': 522 (without start and stop symbols)
+>
+> INFO:ludwig.features.text_feature:Setting max length using dataset: 524 (including start and stop symbols)
+>
+> INFO:ludwig.features.text_feature:max sequence length is 524 for feature 'None'
+>
+> INFO:ludwig.utils.tokenizers:Loaded HuggingFace implementation of meta-llama/Llama-2-7b-hf tokenizer
+>
+> WARNING:ludwig.utils.tokenizers:No padding token id found. Using eos_token as pad_token.
+>
+> Asking to truncate to max_length but no maximum length is provided and the model has no predefined maximum length. Default to no truncation.
+>
+> INFO:ludwig.features.text_feature:Max length of feature 'output': 2 (without start and stop symbols)
+>
+> INFO:ludwig.features.text_feature:Setting max length using dataset: 4 (including start and stop symbols)
+>
+> INFO:ludwig.features.text_feature:max sequence length is 4 for feature 'output'
+>
+> INFO:ludwig.utils.tokenizers:Loaded HuggingFace implementation of meta-llama/Llama-2-7b-hf tokenizer
+>
+> WARNING:ludwig.utils.tokenizers:No padding token id found. Using eos_token as pad_token.
+>
+> Asking to truncate to max_length but no maximum length is provided and the model has no predefined maximum length. Default to no truncation.
+>
+> INFO:ludwig.utils.tokenizers:Loaded HuggingFace implementation of meta-llama/Llama-2-7b-hf tokenizer
+>
+> WARNING:ludwig.utils.tokenizers:No padding token id found. Using eos_token as pad_token.
+>
+> Asking to truncate to max_length but no maximum length is provided and the model has no predefined maximum length. Default to no truncation.
+>
+> INFO:ludwig.data.preprocessing:Building dataset: DONE
+>
+> INFO:ludwig.data.cache.manager:Writing preprocessed training set cache to /content/821304a663c111eebb320242ac1c000c.training.hdf5
+>
+> INFO:ludwig.data.cache.manager:Writing preprocessed validation set cache to /content/821304a663c111eebb320242ac1c000c.validation.hdf5
+>
+> INFO:ludwig.data.cache.manager:Writing preprocessed test set cache to /content/821304a663c111eebb320242ac1c000c.test.hdf5
+>
+> INFO:ludwig.data.cache.manager:Writing train set metadata to /content/821304a663c111eebb320242ac1c000c.meta.json
+>
+> INFO:ludwig.api:
+>
+> Dataset Statistics
+>
+> INFO:ludwig.api:
+>
+> | Dataset | Size (Rows) | Size (In Memory) |
+> | ----- | ----- | ----- |
+> | Training | 5726 | 1.31 Mb | 
+> | Validation | 818 | 191.84 Kb |
+> | Test | 1636 | 383.56 Kb |
+>
+> INFO:ludwig.utils.print_utils:
+>
+> INFO:ludwig.utils.print_utils:╒═══════╕ 
+>
+> INFO:ludwig.utils.print_utils:│ MODEL │
+>
+> INFO:ludwig.utils.print_utils:╘═══════╛ 
+>
+> INFO:ludwig.utils.print_utils:
+>
+> INFO:ludwig.api:Warnings and other logs:
+>
+> INFO:ludwig.models.llm:Loading large language model...
+>
+> INFO:ludwig.models.llm:Done.
+>
+> INFO:ludwig.utils.tokenizers:Loaded HuggingFace implementation of meta-llama/Llama-2-7b-hf tokenizer
+>
+> WARNING:ludwig.utils.tokenizers:No padding token id found. Using eos_token as pad_token.
+>
+> INFO:ludwig.models.llm:==================================================
+>
+> INFO:ludwig.models.llm:Trainable Parameter Summary For Fine-Tuning
+>
+> INFO:ludwig.models.llm:Fine-tuning with adapter: lora
+>
+> INFO:ludwig.models.llm:==================================================
+>
+> INFO:ludwig.utils.print_utils:
+>
+> INFO:ludwig.utils.print_utils:╒══════════╕
+>
+> INFO:ludwig.utils.print_utils:│ TRAINING │
+>
+> INFO:ludwig.utils.print_utils:╘══════════╛
+>
+> INFO:ludwig.utils.print_utils:
+>
+> trainable params: 2,097,152 || all params: 6,740,512,768 || trainable%: 0.03111264783824826
+>
+> INFO:ludwig.trainers.trainer:Creating fresh model training run.
+>
+> INFO:ludwig.trainers.trainer:Training for 5726 step(s), approximately 1 epoch(s).
+>
+> INFO:ludwig.trainers.trainer:Early stopping policy: 5 round(s) of evaluation, or 28630 step(s), approximately 5 epoch(s).
+>
+> INFO:ludwig.trainers.trainer:Starting with step 0, epoch: 0
+>
+> Training:   6%|▌         | 345/5726 [07:08<1:50:29,  1.23s/it, loss=0.719]CRITICAL:ludwig.trainers.trainer:
+>
+> Received SIGINT, will finish this training step and then conclude training.
+>
+> CRITICAL:ludwig.trainers.trainer:Send another SIGINT to immediately interrupt the process.
+>
+> Training:   6%|▌         | 346/5726 [07:10<1:52:30,  1.25s/it, loss=0.699]
+>
+> ---------------------------------------------------------------------------
+>
+> FileNotFoundError                         Traceback (most recent call last)
+> <ipython-input-11-0258379b8add> in <cell line: 62>()
+>
+> 60 
+> 
+> 61 model = LudwigModel(config=qlora_fine_tuning_config, logging_level=logging.INFO)
+>
+> 62 results = model.train(dataset=df_train)
+>
+> /usr/local/lib/python3.10/dist-packages/torch/serialization.py in __init__(self, name, mode)
+>
+> 250 class _open_file(_opener):
+>
+> 251     def __init__(self, name, mode):
+>
+> --> 252         super().__init__(open(name, mode))
+>
+> 253
+>
+> 254     def __exit__(self, *args):
+>
+> FileNotFoundError: [Errno 2] No such file or directory: '/content/results/api_experiment_run/model/training_checkpoints/best.ckpt'
 
-INFO:ludwig.utils.print_utils:
-
-INFO:ludwig.api:
-
-| Experiment name | api_experiment |
-| ----- | ----- |
-| Model name | run |
-| Output directory | /content/results/api_experiment_run |
-| ludwig_version  | '0.8' | 
-| command | ('/usr/local/lib/python3.10/dist-packages/colab_kernel_launcher.py -f ' '/root/.local/share/jupyter/runtime/kernel-4d76683b-8813-4c48-add3-d63c3a84a92d.json') | 
-| random_seed | 42 | 
-| data_format | "<class 'pandas.core.frame.DataFrame'>" | 
-| torch_version | '2.0.1+cu118' | 
-| compute | {'gpu_type': 'Tesla T4', 'gpus_per_node': 1, 'num_nodes': 1} |
-
-INFO:ludwig.utils.print_utils:
-
-INFO:ludwig.utils.print_utils:╒═══════════════╕
-
-INFO:ludwig.utils.print_utils:│ LUDWIG CONFIG │
-
-INFO:ludwig.utils.print_utils:╘═══════════════╛
-
-INFO:ludwig.utils.print_utils:
-
-INFO:ludwig.api:User-specified config (with upgrades):
-
-INFO:ludwig.api:{   'adapter': {'r': 4, 'type': 'lora'},
-
-    'base_model': 'meta-llama/Llama-2-7b-hf',
-    
-    'generation': {'max_new_tokens': 10, 'temperature': 0},
-    
-    'input_features': [{'name': 'instruction', 'type': 'text'}],
-    
-    'ludwig_version': '0.8',
-    
-    'model_type': 'llm',
-    
-    'output_features': [{'name': 'output', 'type': 'text'}],
-    
-    'prompt': {   'template': 'Below is an instruction that describes a task, '
-    
-                              'paired with an input that may provide further '
-                              
-                              'context. Write a response that appropriately '
-                              
-                              'completes the request.\n'
-                              
-                              '### Instruction: {instruction}\n'
-                              
-                              '### Input: {input}\n'
-                              
-                              '### Response:'},
-                              
-    'quantization': {'bits': 4},
-    
-    'trainer': {   'batch_size': 1,
-    
-                   'epochs': 1,
-                   
-                   'eval_batch_size': 1,
-                   
-                   'gradient_accumulation_steps': 16,
-                   
-                   'learning_rate': 1e-05,
-                   
-                   'learning_rate_scheduler': {   'reduce_on_plateau': 0,
-                   
-                                                  'warmup_fraction': 0.03},
-                                                  
-                   'optimizer': {   'params': {   'betas': [0.9, 0.999],
-                   
-                                                  'eps': 1e-08,
-                                                  
-                                                  'weight_decay': 0},
-                                                  
-                                    'type': 'adam'},
-                                    
-                   'type': 'finetune'}}
-INFO:ludwig.api:
-
-Full config saved to:
-
-/content/results/api_experiment_run/api_experiment/model/model_hyperparameters.json
-
-INFO:ludwig.utils.print_utils:
-
-INFO:ludwig.utils.print_utils:╒═══════════════╕
-
-INFO:ludwig.utils.print_utils:│ PREPROCESSING │
-
-INFO:ludwig.utils.print_utils:╘═══════════════╛
-
-INFO:ludwig.utils.print_utils:
-
-INFO:ludwig.data.preprocessing:No cached dataset found at /content/821304a663c111eebb320242ac1c000c.training.hdf5. Preprocessing the dataset.
-
-INFO:ludwig.data.preprocessing:Using full dataframe
-
-INFO:ludwig.data.preprocessing:Building dataset (it may take a while)
-
-INFO:ludwig.utils.tokenizers:Loaded HuggingFace implementation of meta-llama/Llama-2-7b-hf tokenizer
-
-WARNING:ludwig.utils.tokenizers:No padding token id found. Using eos_token as pad_token.
-
-Asking to truncate to max_length but no maximum length is provided and the model has no predefined maximum length. Default to no truncation.
-
-INFO:ludwig.features.text_feature:Max length of feature 'None': 522 (without start and stop symbols)
-
-INFO:ludwig.features.text_feature:Setting max length using dataset: 524 (including start and stop symbols)
-
-INFO:ludwig.features.text_feature:max sequence length is 524 for feature 'None'
-
-INFO:ludwig.utils.tokenizers:Loaded HuggingFace implementation of meta-llama/Llama-2-7b-hf tokenizer
-
-WARNING:ludwig.utils.tokenizers:No padding token id found. Using eos_token as pad_token.
-
-Asking to truncate to max_length but no maximum length is provided and the model has no predefined maximum length. Default to no truncation.
-
-INFO:ludwig.features.text_feature:Max length of feature 'output': 2 (without start and stop symbols)
-
-INFO:ludwig.features.text_feature:Setting max length using dataset: 4 (including start and stop symbols)
-
-INFO:ludwig.features.text_feature:max sequence length is 4 for feature 'output'
-
-INFO:ludwig.utils.tokenizers:Loaded HuggingFace implementation of meta-llama/Llama-2-7b-hf tokenizer
-
-WARNING:ludwig.utils.tokenizers:No padding token id found. Using eos_token as pad_token.
-
-Asking to truncate to max_length but no maximum length is provided and the model has no predefined maximum length. Default to no truncation.
-
-INFO:ludwig.utils.tokenizers:Loaded HuggingFace implementation of meta-llama/Llama-2-7b-hf tokenizer
-
-WARNING:ludwig.utils.tokenizers:No padding token id found. Using eos_token as pad_token.
-
-Asking to truncate to max_length but no maximum length is provided and the model has no predefined maximum length. Default to no truncation.
-
-INFO:ludwig.data.preprocessing:Building dataset: DONE
-
-INFO:ludwig.data.cache.manager:Writing preprocessed training set cache to /content/821304a663c111eebb320242ac1c000c.training.hdf5
-
-INFO:ludwig.data.cache.manager:Writing preprocessed validation set cache to /content/821304a663c111eebb320242ac1c000c.validation.hdf5
-
-INFO:ludwig.data.cache.manager:Writing preprocessed test set cache to /content/821304a663c111eebb320242ac1c000c.test.hdf5
-
-INFO:ludwig.data.cache.manager:Writing train set metadata to /content/821304a663c111eebb320242ac1c000c.meta.json
-
-INFO:ludwig.api:
-
-Dataset Statistics
-
-INFO:ludwig.api:
-
-| Dataset | Size (Rows) | Size (In Memory) |
-| ----- | ----- | ----- |
-| Training | 5726 | 1.31 Mb | 
-| Validation | 818 | 191.84 Kb |
-| Test | 1636 | 383.56 Kb |
-
-INFO:ludwig.utils.print_utils:
-
-INFO:ludwig.utils.print_utils:╒═══════╕ 
-
-INFO:ludwig.utils.print_utils:│ MODEL │
-
-INFO:ludwig.utils.print_utils:╘═══════╛ 
-
-INFO:ludwig.utils.print_utils:
-
-INFO:ludwig.api:Warnings and other logs:
-
-INFO:ludwig.models.llm:Loading large language model...
-
-INFO:ludwig.models.llm:Done.
-
-INFO:ludwig.utils.tokenizers:Loaded HuggingFace implementation of meta-llama/Llama-2-7b-hf tokenizer
-
-WARNING:ludwig.utils.tokenizers:No padding token id found. Using eos_token as pad_token.
-
-INFO:ludwig.models.llm:==================================================
-
-INFO:ludwig.models.llm:Trainable Parameter Summary For Fine-Tuning
-
-INFO:ludwig.models.llm:Fine-tuning with adapter: lora
-
-INFO:ludwig.models.llm:==================================================
-
-INFO:ludwig.utils.print_utils:
-
-INFO:ludwig.utils.print_utils:╒══════════╕
-
-INFO:ludwig.utils.print_utils:│ TRAINING │
-
-INFO:ludwig.utils.print_utils:╘══════════╛
-
-INFO:ludwig.utils.print_utils:
-
-trainable params: 2,097,152 || all params: 6,740,512,768 || trainable%: 0.03111264783824826
-
-INFO:ludwig.trainers.trainer:Creating fresh model training run.
-
-INFO:ludwig.trainers.trainer:Training for 5726 step(s), approximately 1 epoch(s).
-
-INFO:ludwig.trainers.trainer:Early stopping policy: 5 round(s) of evaluation, or 28630 step(s), approximately 5 epoch(s).
-
-INFO:ludwig.trainers.trainer:Starting with step 0, epoch: 0
-
-Training:   6%|▌         | 345/5726 [07:08<1:50:29,  1.23s/it, loss=0.719]CRITICAL:ludwig.trainers.trainer:
-
-Received SIGINT, will finish this training step and then conclude training.
-
-CRITICAL:ludwig.trainers.trainer:Send another SIGINT to immediately interrupt the process.
-
-Training:   6%|▌         | 346/5726 [07:10<1:52:30,  1.25s/it, loss=0.699]
-
----------------------------------------------------------------------------
-
-FileNotFoundError                         Traceback (most recent call last)
-<ipython-input-11-0258379b8add> in <cell line: 62>()
-
-60 
-
-61 model = LudwigModel(config=qlora_fine_tuning_config, logging_level=logging.INFO)
-
-62 results = model.train(dataset=df_train)
-
-/usr/local/lib/python3.10/dist-packages/torch/serialization.py in __init__(self, name, mode)
-
-250 class _open_file(_opener):
-
-251     def __init__(self, name, mode):
-
---> 252         super().__init__(open(name, mode))
-
-253
-
-254     def __exit__(self, *args):
-
-FileNotFoundError: [Errno 2] No such file or directory: '/content/results/api_experiment_run/model/training_checkpoints/best.ckpt'
 
     
 ## Perform Inference

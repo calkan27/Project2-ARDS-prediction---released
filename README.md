@@ -447,4 +447,79 @@ We're going to fine-tune using method 3 since we only have access to a single T4
 
 To do this, the new parameters we're introducing are:
 
-- 
+- adapter: The PEFT method we want to use
+- quantization: Load the weights in int4 or int8 to reduce memory overhead.
+- trainer: We enable the finetune trainer and can configure a variety of training parameters such as epochs and learning rate.
+
+Important Note: Set an alarm clock⏰ to upload/download your model in time, otherwise colab will kill the runtime and you will lose all training progress.
+
+Important Notes2: If you get a CUDA OUT OF MEMORY error, you need to restart the runtime because the garbage memory can't be properly collected.
+
+Important Notes3: If it shows no GPU runtime available, it means you have reached to limit for free accounts and you need to wait for 24 hours to get access to new GPU nodes.
+
+The cell below provides an example to finetune LLAMA2-7B model. You don't really need to wait for the cell to finish as we will optimize it later.
+
+```
+model = None
+clear_cache()
+df_train = df
+qlora_fine_tuning_config = yaml.safe_load(
+"""
+model_type: llm
+base_model: meta-llama/Llama-2-7b-hf
+
+input_features:
+  - name: instruction
+    type: text
+
+output_features:
+  - name: output
+    type: text
+
+prompt:
+  template: >-
+    Below is an instruction that describes a task, paired with an input
+    that may provide further context. Write a response that appropriately
+    completes the request.
+
+    ### Instruction: {instruction}
+
+    ### Input: {input}
+
+    ### Response:
+generation:
+  temperature: 0
+  max_new_tokens: 10
+
+adapter:
+  type: lora
+  r: 4
+
+quantization:
+  bits: 4
+
+trainer:
+  type: finetune
+  epochs: 1
+  batch_size: 1
+  eval_batch_size: 1
+  gradient_accumulation_steps: 16
+  learning_rate: 0.00001
+  optimizer:
+    type: adam
+    params:
+      eps: 1.e-8
+      betas:
+        - 0.9
+        - 0.999
+      weight_decay: 0
+  learning_rate_scheduler:
+    warmup_fraction: 0.03
+    reduce_on_plateau: 0
+"""
+)
+
+model = LudwigModel(config=qlora_fine_tuning_config, logging_level=logging.INFO)
+results = model.train(dataset=df_train)
+
+```

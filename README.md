@@ -692,3 +692,106 @@ Dataset Statistics
 
 INFO:ludwig.api:
 
+| Dataset | Size (Rows) | Size (In Memory) |
+| ----- | ----- | ----- |
+| Training | 5726 | 1.31 Mb | 
+| Validation | 818 | 191.84 Kb |
+| Test | 1636 | 383.56 Kb |
+
+INFO:ludwig.utils.print_utils:
+
+INFO:ludwig.utils.print_utils:╒═══════╕ 
+
+INFO:ludwig.utils.print_utils:│ MODEL │
+
+INFO:ludwig.utils.print_utils:╘═══════╛ 
+
+INFO:ludwig.utils.print_utils:
+
+INFO:ludwig.api:Warnings and other logs:
+
+INFO:ludwig.models.llm:Loading large language model...
+
+INFO:ludwig.models.llm:Done.
+
+INFO:ludwig.utils.tokenizers:Loaded HuggingFace implementation of meta-llama/Llama-2-7b-hf tokenizer
+
+WARNING:ludwig.utils.tokenizers:No padding token id found. Using eos_token as pad_token.
+
+INFO:ludwig.models.llm:==================================================
+
+INFO:ludwig.models.llm:Trainable Parameter Summary For Fine-Tuning
+
+INFO:ludwig.models.llm:Fine-tuning with adapter: lora
+
+INFO:ludwig.models.llm:==================================================
+
+INFO:ludwig.utils.print_utils:
+
+INFO:ludwig.utils.print_utils:╒══════════╕
+
+INFO:ludwig.utils.print_utils:│ TRAINING │
+
+INFO:ludwig.utils.print_utils:╘══════════╛
+
+INFO:ludwig.utils.print_utils:
+
+trainable params: 2,097,152 || all params: 6,740,512,768 || trainable%: 0.03111264783824826
+
+INFO:ludwig.trainers.trainer:Creating fresh model training run.
+
+INFO:ludwig.trainers.trainer:Training for 5726 step(s), approximately 1 epoch(s).
+
+INFO:ludwig.trainers.trainer:Early stopping policy: 5 round(s) of evaluation, or 28630 step(s), approximately 5 epoch(s).
+
+INFO:ludwig.trainers.trainer:Starting with step 0, epoch: 0
+
+Training:   6%|▌         | 345/5726 [07:08<1:50:29,  1.23s/it, loss=0.719]CRITICAL:ludwig.trainers.trainer:
+
+Received SIGINT, will finish this training step and then conclude training.
+
+CRITICAL:ludwig.trainers.trainer:Send another SIGINT to immediately interrupt the process.
+
+Training:   6%|▌         | 346/5726 [07:10<1:52:30,  1.25s/it, loss=0.699]
+
+---------------------------------------------------------------------------
+
+FileNotFoundError                         Traceback (most recent call last)
+
+<ipython-input-11-0258379b8add> in <cell line: 62>()
+
+     60 
+     
+     61 model = LudwigModel(config=qlora_fine_tuning_config, logging_level=logging.INFO)
+     
+---> 62 results = model.train(dataset=df_train)
+
+/usr/local/lib/python3.10/dist-packages/torch/serialization.py in __init__(self, name, mode)
+
+    250 class _open_file(_opener):
+    
+    251     def __init__(self, name, mode):
+    
+--> 252         super().__init__(open(name, mode))
+
+    253 
+    
+    254     def __exit__(self, *args):
+
+FileNotFoundError: [Errno 2] No such file or directory: '/content/results/api_experiment_run/model/training_checkpoints/best.ckpt'
+
+## Perform Inference
+
+We can now use the model we fine-tuned above to make predictions on some test examples to see whether fine-tuning the large language model improve its ability to follow instructions/the tasks we're asking it to perform.
+
+
+
+ _|    _|  _|    _|    _|_|_|    _|_|_|  _|_|_|  _|      _|    _|_|_|      _|_|_|_|    _|_|      _|_|_|  _|_|_|_|
+ 
+    _|    _|  _|    _|  _|        _|          _|    _|_|    _|  _|            _|        _|    _|  _|        _|
+    
+    _|_|_|_|  _|    _|  _|  _|_|  _|  _|_|    _|    _|  _|  _|  _|  _|_|      _|_|_|    _|_|_|_|  _|        _|_|_|
+    
+    _|    _|  _|    _|  _|    _|  _|    _|    _|    _|    _|_|  _|    _|      _|        _|    _|  _|        _|
+    
+    _|    _|    _|_|      _|_|_|    _|_|_|  _|_|_|  _|      _|    _|_|_|      _|        _|    _|    _|_|_|  _|_|_|_|

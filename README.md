@@ -10,11 +10,12 @@ Large machine learning (esp. deep learning) models can be pre-trained on a large
 
 [70 points] The prediction result file "test_result.csv". We will use the F1 score to evaluate the performance of your models. Please follow the format requirement specified above. Otherwise, points will be deducted depending on how much effort TAs need to parse your results. All submissions will be ranked into three groups (high, medium, and low) according to the test F1 scores. The high, medium, and low groups will receive 70, 65, and 60 points, respectively.
 
-[30 points] Source codes with comments. You should add a report in PDF format explaining your approach(es). Each team needs to clearly specify the contributions of each team member. Points will be deducted if we do not understand your codes or reproduce your results.
-Late submission penalty: 15 points. This is the default policy of this class.
+[30 points] Source code. The source code must contain extensive comments to elucidate the logic of the program.. 
 
 
 Acute respiratory distress syndrome (ARDS) is a serious lung condition that causes low blood oxygen. In this project, you need to make a preidction about if the patient has ARDS based on their medical notes. Each patient may have multiple notes.
+
+## The following are the instructions and project template:
 
 Let's explore how to fine-tune an LLM on a single commodity GPU with Ludwig, an open-source package that empowers you to effortlessly build and train machine learning models like LLMs, neural networks and tree based models through declarative config files.
 
@@ -524,19 +525,19 @@ results = model.train(dataset=df_train)
 
 ```
 
-Downloading (…)lve/main/config.json: 100%
+> Downloading (…)lve/main/config.json: 100%
 
-609/609 [00:00<00:00, 31.5kB/s]
+> 609/609 [00:00<00:00, 31.5kB/s]
 
-INFO:ludwig.utils.print_utils:
+> INFO:ludwig.utils.print_utils:
 
-INFO:ludwig.utils.print_utils:  ╒════════════════════════╕
+> INFO:ludwig.utils.print_utils:  ╒════════════════════════╕
 
-INFO:ludwig.utils.print_utils:  │ EXPERIMENT DESCRIPTION │
+> INFO:ludwig.utils.print_utils:  │ EXPERIMENT DESCRIPTION │
 
-INFO:ludwig.utils.print_utils:  ╘════════════════════════╛
+> INFO:ludwig.utils.print_utils:  ╘════════════════════════╛
 
-INFO:ludwig.utils.print_utils:
+> INFO:ludwig.utils.print_utils:
 
 INFO:ludwig.utils.print_utils:
 
@@ -785,4 +786,3 @@ FileNotFoundError: [Errno 2] No such file or directory: '/content/results/api_ex
 We can now use the model we fine-tuned above to make predictions on some test examples to see whether fine-tuning the large language model improve its ability to follow instructions/the tasks we're asking it to perform.
 
 
-The model-path can be seen at the end of training/fine-tuning, as seen in this screenshot. You need to get a Huggingface Write API to upload

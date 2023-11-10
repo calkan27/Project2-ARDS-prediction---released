@@ -802,6 +802,65 @@ for input_with_prediction in zip(test_examples['instruction'], test_examples['in
   print("\n\n")
 
 ```
+> INFO:ludwig.utils.tokenizers:Loaded HuggingFace implementation of meta-llama/Llama-2-7b-hf tokenizer
+> WARNING:ludwig.utils.tokenizers:No padding token id found. Using eos_token as pad_token.
+> Asking to truncate to max_length but no maximum length is provided and the model has no predefined maximum length. Default to no truncation.
+> Prediction:   0%|          | 0/1 [00:00<?, ?it/s]
+> INFO:ludwig.models.llm:For generating text, using: GenerationConfig {
+>   "do_sample": true,
+>   "max_length": 32,
+>   "max_new_tokens": 10,
+>   "pad_token_id": 2,
+>   "temperature": 0.1
+> }
+> 
+> INFO:ludwig.models.llm:Decoded text inputs for the first example in batch: below is an instruction that describes a task, paired with an input that may provide further context. write a response that appropriately completes the request.
+> ### instruction: based on the following medical notes, please predict whether the patient described is likely to have acute respiratory distress syndrome (ards). your prediction should be either 'true' if ards is likely, or 'false' if it is not likely.
+> ### input: note 1: examination:   ct head w/o contrast q111
+> 
+> indication:  ___ year old woman now s/p left crani for tumor resection - please
+> perform prior to ___  // ? interval changes / post operative hemorrhage
+> /stroke
+> 
+> technique:  multidetector ct images of the head were obtained without
+> intravenous contrast.  sagittal and coronal reformations were also performed.
+> 
+> dose:  acquisition sequence:
+>    1) sequenced acquisition 16.0 s, 16.5 cm; ctdivol = 48.6 mgy (head) dlp =
+> 802.7 mgy-cm.
+>  total dlp (head) = 803 mgy-cm.
+> 
+> comparison:  head ct is available from ___ and more recent mr from
+> the prior day.
+> 
+> findings: 
+> 
+> patient is status post left frontotemporal craniotomy with craniectomy with
+> craniotomy with left anterior temporal lobe resection.  there is moderate
+> associated pneumocephalus and non organized fluid in the left middle cranial
+> fossa, which is rim by small quantities of patchy hemorrhagic products.  these
+> extend minimally into the adjacent left fronta
+> ### response:
+> INFO:ludwig.models.llm:Decoded generated output for the first example in batch: below is an instruction that describes a task, paired with an input that may provide further context. write a response that appropriately completes the request.
+> ### instruction: based on the following medical notes, please predict whether the patient described is likely to have acute respiratory distress syndrome (ards). your prediction should be either 'true' if ards is likely, or 'false' if it is not likely.
+> ### input: note 1: examination:   ct head w/o contrast q111
+> 
+> indication:  ___ year old woman now s/p left crani for tumor resection - please
+> perform prior to ___  // ? interval changes / post operative hemorrhage
+> /stroke
+> 
+> technique:  multidetector ct images of the head were obtained without
+intravenous contrast.  sagittal and coronal reformations were also performed.
+>
+> dose:  acquisition sequence:
+>
+> 1) sequenced acquisition 16.0 s, 16.5 cm; ctdivol = 48.6 mgy (head) dlp = 802.7 mgy-cm. total dlp (head) = 803 mgy-cm.
+>
+>    comparison:  head ct is available from ___ and more recent mr from the prior day.
+>
+> findings:
+>
+> 
 
 ## Save Trained Model Artifacts To HuggingFace
 
@@ -816,6 +875,49 @@ The model-path can be seen at the end of training/fine-tuning. You need to get a
 
 ```
 !ludwig upload hf_hub --repo_id MomochiKyaru/example --model_path /content/results/api_experiment_run
+```
+
+If you want to store your weights locally, you may also download it through colab.
+
+```
+!zip -r /content/file.zip /content/results/api_experiment_run
+```
+> adding: content/results/api_experiment_run/ (stored 0%)
+> 
+> adding: content/results/api_experiment_run/description.json (deflated 80%)
+> 
+> adding: content/results/api_experiment_run/model/ (stored 0%)
+> 
+> adding: content/results/api_experiment_run/model/model_hyperparameters.json (deflated 88%)
+> 
+> adding: content/results/api_experiment_run/model/logs/ (stored 0%)
+> 
+> adding: content/results/api_experiment_run/model/logs/training/ (stored 0%)
+> 
+> adding: content/results/api_experiment_run/model/logs/training/events.out.tfevents.1696539509.61bd12dab543.206.0 (deflated 80%)
+> 
+> adding: content/results/api_experiment_run/model/logs/test/ (stored 0%)
+> 
+> adding: content/results/api_experiment_run/model/logs/test/events.out.tfevents.1696539509.61bd12dab543.206.2 (deflated 9%)
+> 
+> adding: content/results/api_experiment_run/model/logs/validation/ (stored 0%)
+> 
+> adding: content/results/api_experiment_run/model/logs/validation/events.out.tfevents.1696539509.61bd12dab543.206.1 (deflated 9%)
+> 
+> adding: content/results/api_experiment_run/model/training_set_metadata.json (deflated 83%)
+> 
+> adding: content/results/api_experiment_run/model/training_checkpoints/ (stored 0%)
+> 
+> adding: content/results/api_experiment_run/model/training_checkpoints/latest.ckpt (deflated 8%)
+> 
+> adding: content/results/api_experiment_run/model/training_progress.json (deflated 73%)
+> 
+
+
+```
+from google.colab import files
+
+files.download('REPLACE_MODEL_PATH_HERE')
 ```
 
 ## Task: Optimize the dummy LLM

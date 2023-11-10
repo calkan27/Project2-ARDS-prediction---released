@@ -802,3 +802,18 @@ for input_with_prediction in zip(test_examples['instruction'], test_examples['in
   print("\n\n")
 
 ```
+
+## Save Trained Model Artifacts To HuggingFace
+
+Now that we have a fine-tuned model, we can export the model weights to HuggingFace hub so we can use them later. Ludwig supports uploading model weights directly to HuggingFace Hub via the upload Ludwig command.
+
+```
+!ludwig upload hf_hub --repo_id <hf_user_name>/<repo_name> --model_path <top_level_model_directory>
+```
+
+
+The model-path can be seen at the end of training/fine-tuning. You need to get a Huggingface Write API to upload
+
+```
+!ludwig upload hf_hub --repo_id MomochiKyaru/example --model_path /content/results/api_experiment_run
+```

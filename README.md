@@ -786,10 +786,19 @@ results = model.train(dataset=df_train)
 
 We can now use the model we fine-tuned above to make predictions on some test examples to see whether fine-tuning the large language model improve its ability to follow instructions/the tasks we're asking it to perform.
 
+```
 test_examples = df[11:13]
+
 predictions = model.predict(test_examples)[0]
+
 for input_with_prediction in zip(test_examples['instruction'], test_examples['input'], predictions['output_response']):
+
   print(f"Instruction: {input_with_prediction[0]}")
+
   print(f"Input: {input_with_prediction[1]}")
+
   print(f"Generated Output: {input_with_prediction[2][0]}")
+
   print("\n\n")
+
+```

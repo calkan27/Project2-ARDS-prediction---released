@@ -1,5 +1,19 @@
 # Project 2
 
+## Task: 
+Large machine learning (esp. deep learning) models can be pre-trained on a large amount of diverse data (usually, unlabelled data), and then be customized for various downstream tasks. In this project, you will use a pre-trained "large" foundation model to classify if a patient has ARDS (acute respiratory distress syndrome) based on his clinical note. A small training set is provided for you to build a machine learning pipeline for this task. You may need to finetune the pre-trained model using the provided training set. You will need to apply your pipeline to the test set and save the results in "test_result.csv", in which each row is the prediction of the corresponding row in the test set.
+
+## Datasets: 
+(a) The training set file contains two columns. The first column is the notes, and the second column is the class label (TRUE or FALSE); (b) The test set file has only one column containing the notes. Each row in the training and test files represent a patient. Both files are .pkl files.
+
+## Submit: 
+
+[70 points] The prediction result file "test_result.csv". We will use the F1 score to evaluate the performance of your models. Please follow the format requirement specified above. Otherwise, points will be deducted depending on how much effort TAs need to parse your results. All submissions will be ranked into three groups (high, medium, and low) according to the test F1 scores. The high, medium, and low groups will receive 70, 65, and 60 points, respectively.
+
+[30 points] Source codes with comments. You should add a report in PDF format explaining your approach(es). Each team needs to clearly specify the contributions of each team member. Points will be deducted if we do not understand your codes or reproduce your results.
+Late submission penalty: 15 points. This is the default policy of this class.
+
+
 Acute respiratory distress syndrome (ARDS) is a serious lung condition that causes low blood oxygen. In this project, you need to make a preidction about if the patient has ARDS based on their medical notes. Each patient may have multiple notes.
 
 Let's explore how to fine-tune an LLM on a single commodity GPU with Ludwig, an open-source package that empowers you to effortlessly build and train machine learning models like LLMs, neural networks and tree based models through declarative config files.
@@ -246,3 +260,51 @@ drive.mount('/content/drive')
 
 If you can't load the dataset, please check if you have mounted google drive, and if the file name/path is correct.
 
+```
+from google.colab import data_table; data_table.enable_dataframe_formatter()
+
+import numpy as np; np.random.seed(123)
+
+import pandas as pd
+
+import pickle as pkl
+
+df = pd.read_pickle("/content/drive/MyDrive/project2_train.pkl")
+
+df = df.fillna("")
+
+# We're going to create a new column called `split` where:
+
+# 90% will be assigned a value of 0 -> train set
+
+# 10% will be assigned a value of 1 -> validation set
+
+# Calculate the number of rows for each split value
+
+total_rows = len(df)
+
+split_0_count = int(total_rows * 0.9)
+
+split_1_count = total_rows - split_0_count
+
+
+# Create an array with split values based on the counts
+
+split_values = np.concatenate([
+
+    np.zeros(split_0_count),
+
+    np.ones(split_1_count),
+
+])
+
+# Shuffle the array to ensure randomness
+
+np.random.shuffle(split_values)
+
+# Add the 'split' column to the DataFrame
+
+df['split'] = split_values
+
+df['split'] = df['split'].astype(int)
+```

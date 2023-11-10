@@ -803,15 +803,25 @@ for input_with_prediction in zip(test_examples['instruction'], test_examples['in
 
 ```
 > INFO:ludwig.utils.tokenizers:Loaded HuggingFace implementation of meta-llama/Llama-2-7b-hf tokenizer
+> 
 > WARNING:ludwig.utils.tokenizers:No padding token id found. Using eos_token as pad_token.
+> 
 > Asking to truncate to max_length but no maximum length is provided and the model has no predefined maximum length. Default to no truncation.
+> 
 > Prediction:   0%|          | 0/1 [00:00<?, ?it/s]
+> 
 > INFO:ludwig.models.llm:For generating text, using: GenerationConfig {
+> 
 >   "do_sample": true,
+> 
 >   "max_length": 32,
+> 
 >   "max_new_tokens": 10,
+> 
 >   "pad_token_id": 2,
+> 
 >   "temperature": 0.1
+> 
 > }
 > 
 > INFO:ludwig.models.llm:Decoded text inputs for the first example in batch: below is an instruction that describes a task, paired with an input that may provide further context. write a response that appropriately completes the request.
@@ -823,15 +833,18 @@ for input_with_prediction in zip(test_examples['instruction'], test_examples['in
 > /stroke
 > 
 > technique:  multidetector ct images of the head were obtained without
+> 
 > intravenous contrast.  sagittal and coronal reformations were also performed.
 > 
 > dose:  acquisition sequence:
+> 
 >    1) sequenced acquisition 16.0 s, 16.5 cm; ctdivol = 48.6 mgy (head) dlp =
+>       
 > 802.7 mgy-cm.
+> 
 >  total dlp (head) = 803 mgy-cm.
 > 
-> comparison:  head ct is available from ___ and more recent mr from
-> the prior day.
+> comparison:  head ct is available from ___ and more recent mr from the prior day.
 > 
 > findings: 
 > 
@@ -840,10 +853,10 @@ for input_with_prediction in zip(test_examples['instruction'], test_examples['in
 > associated pneumocephalus and non organized fluid in the left middle cranial
 > fossa, which is rim by small quantities of patchy hemorrhagic products.  these
 > extend minimally into the adjacent left fronta
-> ### response:
+> \### response:
 > INFO:ludwig.models.llm:Decoded generated output for the first example in batch: below is an instruction that describes a task, paired with an input that may provide further context. write a response that appropriately completes the request.
-> ### instruction: based on the following medical notes, please predict whether the patient described is likely to have acute respiratory distress syndrome (ards). your prediction should be either 'true' if ards is likely, or 'false' if it is not likely.
-> ### input: note 1: examination:   ct head w/o contrast q111
+> \### instruction: based on the following medical notes, please predict whether the patient described is likely to have acute respiratory distress syndrome (ards). your prediction should be either 'true' if ards is likely, or 'false' if it is not likely.
+> \### input: note 1: examination:   ct head w/o contrast q111
 > 
 > indication:  ___ year old woman now s/p left crani for tumor resection - please
 > perform prior to ___  // ? interval changes / post operative hemorrhage
@@ -860,7 +873,139 @@ intravenous contrast.  sagittal and coronal reformations were also performed.
 >
 > findings:
 >
-> 
+>patient is status post left frontotemporal craniotomy with craniectomy with
+craniotomy with left anterior temporal lobe resection.  there is moderate
+associated pneumocephalus and non organized fluid in the left middle cranial
+fossa, which is rim by small quantities of patchy hemorrhagic products.  these
+extend minimally into the adjacent left fronta
+>
+> \### response: false
+>
+> INFO:ludwig.models.llm:Decoded text inputs for the first example in batch: below is an instruction that describes a task, paired with an input that may provide further context. write a response that appropriately completes the request.
+>
+> \### instruction: based on the following medical notes, please predict whether the patient described is likely to have acute respiratory distress syndrome (ards). your prediction should be either 'true' if ards is likely, or 'false' if it is not likely.
+>
+> \### input: note 1: examination:  ct torso examination.
+>
+> indication:  ___ year old man with newly diagnosed left sided brain mass with
+right homonymous hemianopsia  // evaluate for other lesions or masses
+>
+> technique:  single phase split bolus contrast: mdct axial images were acquired
+through the chest, abdomen and pelvis following intravenous contrast
+administration with split bolus technique.
+oral contrast was administered.
+coronal and sagittal reformations were performed and reviewed on pacs.
+>
+> dose:  total dlp (body) = 958 mgy-cm.
+>
+> comparison:  none.
+>
+> findings:
+>
+> there is a right apical mass, contiguous with the right upper mediastinum,
+measuring approximately 8.8 x 5.4 x 5.9 cm (series 2, image 12, series 601b,
+image 35).  the mass abuts the right subclavian vein without attenuation, and
+contacts the svc without significant mass effect (series 2, image 17, 13). 
+there is associated peripheral atelectasis (series 601b, image 36).  no
+adjacent osseous invas
+>
+> \### response:
+>
+> INFO:ludwig.models.llm:Decoded generated output for the first example in batch: below is an instruction that describes a task, paired with an input that may provide further context. write a response that appropriately completes the request.
+>
+> \### instruction: based on the following medical notes, please predict whether the patient described is likely to have acute respiratory distress syndrome (ards). your prediction should be either 'true' if ards is likely, or 'false' if it is not likely.
+>
+> \### input: note 1: examination:  ct torso examination.
+>
+> indication:  ___ year old man with newly diagnosed left sided brain mass with
+right homonymous hemianopsia  // evaluate for other lesions or masses
+>
+> technique:  single phase split bolus contrast: mdct axial images were acquired
+through the chest, abdomen and pelvis following intravenous contrast
+administration with split bolus technique.
+oral contrast was administered.
+coronal and sagittal reformations were performed and reviewed on pacs.
+>
+> dose:  total dlp (body) = 958 mgy-cm.
+>
+> comparison:  none.
+>
+> findings:
+>
+> there is a right apical mass, contiguous with the right upper mediastinum,
+measuring approximately 8.8 x 5.4 x 5.9 cm (series 2, image 12, series 601b,
+image 35).  the mass abuts the right subclavian vein without attenuation, and
+contacts the svc without significant mass effect (series 2, image 17, 13). 
+there is associated peripheral atelectasis (series 601b, image 36).  no
+adjacent osseous invas
+>
+> \### response: false
+>
+> Prediction: 100%|██████████| 1/1 [00:03<00:00,  3.26s/it]
+>
+> INFO:ludwig.utils.tokenizers:Loaded HuggingFace implementation of meta-llama/Llama-2-7b-hf tokenizer
+>
+> WARNING:ludwig.utils.tokenizers:No padding token id found. Using eos_token as pad_token.
+>
+> Instruction: Based on the following medical notes, please predict whether the patient described is likely to have Acute Respiratory Distress Syndrome (ARDS). Your prediction should be either 'true' if ARDS is likely, or 'false' if it is not likely.
+>
+> Input: Note 1: EXAMINATION:   CT HEAD W/O CONTRAST Q111
+>
+> INDICATION:  ___ year old woman now s/p Left crani for tumor resection - please
+perform PRIOR to ___  // ? interval changes / post operative hemorrhage
+/stroke
+>
+> TECHNIQUE:  Multidetector CT images of the head were obtained without
+intravenous contrast.  Sagittal and coronal reformations were also performed.
+>
+> DOSE:  Acquisition sequence:
+>
+>  1) Sequenced Acquisition 16.0 s, 16.5 cm; CTDIvol = 48.6 mGy (Head) DLP =
+802.7 mGy-cm.
+>
+> Total DLP (Head) = 803 mGy-cm.
+>
+> COMPARISON:  Head CT is available from ___ and more recent MR from
+the prior day.
+>
+> FINDINGS:
+>
+> Patient is status post left frontotemporal craniotomy with craniectomy with
+craniotomy with left anterior temporal lobe resection.  There is moderate
+associated pneumocephalus and non organized fluid in the left middle cranial
+fossa, which is rim by small quantities of patchy hemorrhagic products.  These
+extend minimally into the adjacent left fronta
+Generated Output: false
+>
+> Instruction: Based on the following medical notes, please predict whether the patient described is likely to have Acute Respiratory Distress Syndrome (ARDS). Your prediction should be either 'true' if ARDS is likely, or 'false' if it is not likely.
+Input: Note 1: EXAMINATION:  CT torso examination.
+>
+> INDICATION:  ___ year old man with newly diagnosed left sided brain mass with right homonymous hemianopsia  // Evaluate for other lesions or masses
+>
+> TECHNIQUE:  Single phase split bolus contrast: MDCT axial images were acquired
+through the chest, abdomen and pelvis following intravenous contrast
+administration with split bolus technique.
+Oral contrast was administered.
+Coronal and sagittal reformations were performed and reviewed on PACS.
+>
+> DOSE:  Total DLP (Body) = 958 mGy-cm.
+>
+> COMPARISON:  None.
+>
+> FINDINGS:
+>
+> There is a right apical mass, contiguous with the right upper mediastinum,
+measuring approximately 8.8 x 5.4 x 5.9 cm (series 2, image 12, series 601b,
+image 35).  The mass abuts the right subclavian vein without attenuation, and
+contacts the SVC without significant mass effect (series 2, image 17, 13). 
+There is associated peripheral atelectasis (series 601b, image 36).  No
+adjacent osseous invas
+Generated Output: false
+>
+> /usr/local/lib/python3.10/dist-packages/ludwig/features/feature_utils.py:102: RuntimeWarning: divide by zero encountered in log
+  return np.sum(np.log(sequence_probabilities))
+
+
 
 ## Save Trained Model Artifacts To HuggingFace
 

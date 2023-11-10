@@ -542,3 +542,10 @@ INFO:ludwig.utils.print_utils:
 
 INFO:ludwig.api:
 
+| Experiment name | api_experiment |
+| ----- | ----- |
+| Model name | run |
+| Output directory | /content/results/api_experiment_run |
+| ludwig_version  | '0.8' | 
+| command | ('/usr/local/lib/python3.10/dist-packages/colab_kernel_launcher.py -f ' '/root/.local/share/jupyter/runtime/kernel-4d76683b-8813-4c48-add3-d63c3a84a92d.json') | random_seed | 42 | data_format | "<class 'pandas.core.frame.DataFrame'>" | torch_version | '2.0.1+cu118' | compute | {'gpu_type': 'Tesla T4', 'gpus_per_node': 1, 'num_nodes': 1} |
+

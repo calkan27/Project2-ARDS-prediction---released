@@ -817,3 +817,47 @@ The model-path can be seen at the end of training/fine-tuning. You need to get a
 ```
 !ludwig upload hf_hub --repo_id MomochiKyaru/example --model_path /content/results/api_experiment_run
 ```
+
+## Task: Optimize the dummy LLM
+
+Once you are familiar with fine-tuning LLM, you need to improve the model. Consider the directions below to further refine and leverage your model. Search for more informations on the internet and use LLM applications to increase your productivity (e.g. ChatGPT, github copilot)
+
+# Leverage Domain-Specific Pre-Trained LLMs
+
+- Explore Specialized LLMs: Investigate LLMs trained on domain-specific data like scholarly articles, journals. Consider using BioGPT, PubmedBERT, etc.Huggingface offer access to numerous domain-focused LLMs to cater to specific needs.
+  
+# Prompt Engineering:
+
+- Instruction Design: Develop effective instruction prompts to guide the LLM in generating desired responses.
+  
+- Testing with ChatGPT: Utilize ChatGPT for testing your prompts, evaluating their efficacy in generating relevant outputs.
+  
+- Managing Prompt Length: Keep in mind that the length of the prompt impacts the maximum allowable input string length. Consider exploring various prompt engineering methods to optimize results.
+
+# Input Note Truncation:
+- Exploring Truncation Methods: Explore optimal methods to truncate input notes, ensuring preservation of key information.
+  
+- Utilizing Summarization: Employ LLMs to summarize notes, enabling the extraction of maximum information while adhering to input length constraints.
+  
+# Text Embedding:
+- Text Embedding with LLMs: If computational resources are constrained, leverage LLMs to convert natural language notes into text embeddings (feature vectors) using relatively lower computational power.
+  
+- Project 1 Learnings Application: Apply the insights and techniques learned from Project 1 to train a classification model, using the derived embedding features to improve or refine model outcomes.
+- 
+# Dealing with imbalanced dataset:
+
+- Optimizing of Output Type and Loss Function: With 8000 negative and approximately 100 positive samples, the dataset is notably imbalanced. Instead of a straightforward answer-generation task, guide the LLM to predict a boolean and adopt a loss function that heightens focus on positive samples.
+  
+- Data Augmentation: Contemplate enhancing the dataset by incorporating additional positive samples, mitigating imbalance and possibly improving model learning.
+  
+## Requirements
+
+Save your predictions to the test set as a numpy array and dump to a pickle file 'prediction.pkl'. Submit your predict and report you efforts in optimizing the LLM. Using LLM API services like OpenAI API is not allowed(for fairness reason). You may train models on your own GPU, but peak GPU RAM usage should not exceed 15GB.
+
+```
+# make predictions on df test
+
+df_test = pd.read_pickle("/content/drive/MyDrive/project2_test.pkl")
+
+df_test = df.fillna("")
+```

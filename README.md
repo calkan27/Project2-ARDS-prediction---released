@@ -877,6 +877,68 @@ The model-path can be seen at the end of training/fine-tuning. You need to get a
 !ludwig upload hf_hub --repo_id MomochiKyaru/example --model_path /content/results/api_experiment_run
 ```
 
+> _|    _|  _|    _|    _|_|_|    _|_|_|  _|_|_|  _|      _|    _|_|_|      _|_|_|_|    _|_|      _|_|_|  _|_|_|_|
+>
+>  _|    _|  _|    _|  _|        _|          _|    _|_|    _|  _|            _|        _|    _|  _|        _|
+>
+>  _|_|_|_|  _|    _|  _|  _|_|  _|  _|_|    _|    _|  _|  _|  _|  _|_|      _|_|_|    _|_|_|_|  _|        _|_|_|
+>
+> _|    _|  _|    _|  _|    _|  _|    _|    _|    _|    _|_|  _|    _|      _|        _|    _|  _|        _|
+>
+> _|    _|    _|_|      _|_|_|    _|_|_|  _|_|_|  _|      _|    _|_|_|      _|        _|    _|    _|_|_|  _|_|_|_|
+> 
+> A token is already saved on your machine. Run `huggingface-cli whoami` to get more information or `huggingface-cli logout` if you want to log out.
+> 
+>     Setting a new token will erase the existing one.
+> 
+>     To login, `huggingface_hub` requires a token generated from https://huggingface.co/settings/tokens .
+> 
+> Token:
+> 
+> Add token as git credential? (Y/n) n
+> 
+> Token is valid (permission: write).
+> 
+> Your token has been saved to /root/.cache/huggingface/token
+> 
+> Login successful
+> 
+> Traceback (most recent call last):
+> 
+>   File "/usr/local/bin/ludwig", line 8, in <module>
+
+>     sys.exit(main())
+> 
+>   File "/usr/local/lib/python3.10/dist-packages/ludwig/cli.py", line 191, in main
+> 
+>     CLI()
+> 
+>   File "/usr/local/lib/python3.10/dist-packages/ludwig/cli.py", line 71, in __init__
+> 
+>     getattr(self, args.command)()
+> 
+>   File "/usr/local/lib/python3.10/dist-packages/ludwig/cli.py", line 186, in upload
+> 
+>     upload.cli(sys.argv[2:])
+> 
+>   File "/usr/local/lib/python3.10/dist-packages/ludwig/upload.py", line 125, in cli
+> 
+>     upload_cli(**vars(args))
+> 
+>   File "/usr/local/lib/python3.10/dist-packages/ludwig/upload.py", line 56, in upload_cli
+> 
+>     hub.upload(
+> 
+>   File "/usr/local/lib/python3.10/dist-packages/ludwig/utils/upload_utils.py", line 177, in upload
+> 
+>     HuggingFaceHub._validate_upload_parameters(
+> 
+>   File "/usr/local/lib/python3.10/dist-packages/ludwig/utils/upload_utils.py", line 107, in _validate_upload_parameters
+> 
+>     raise Exception(
+> 
+> Exception: Model artifacts not found at /content/results/api_experiment_run/model/model_weights. It is possible that model at '/content/results/api_experiment_run' hasn't been trained yet, or something went wrong during training where the model's weights were not saved.
+
 If you want to store your weights locally, you may also download it through colab.
 
 ```
@@ -918,6 +980,49 @@ If you want to store your weights locally, you may also download it through cola
 from google.colab import files
 
 files.download('REPLACE_MODEL_PATH_HERE')
+```
+
+## Load saved model from Huggingface and Inference
+
+```
+# Load the uploaded weights
+from transformers import AutoTokenizer, AutoModelForCausalLM, BitsAndBytesConfig
+from peft import PeftModel, PeftConfig
+
+# Default quantization config for base model in Ludwig AI
+quantization_config = BitsAndBytesConfig(
+    bnb_4bit_compute_dtype= torch.float16,
+    bnb_4bit_quant_type= "nf4",
+    bnb_4bit_use_double_quant= True,
+    load_in_4bit=True,
+    quant_method="bitsandbytes"
+)
+
+base_model = "meta-llama/Llama-2-7b-hf"
+model = AutoModelForCausalLM.from_pretrained(base_model, torch_dtype = torch.float16, quantization_config = quantization_config, device_map='auto')
+tokenizer = AutoTokenizer.from_pretrained(base_model)
+lora_config = PeftConfig.from_pretrained("HUGGINGFACE_ID/HUGGINGFACE_REPO")
+model = PeftModel.from_pretrained(model, "HUGGINGFACE_ID/HUGGINGFACE_REPO", config = lora_config)
+
+# Generate the instruction prompt for the fine-tuned model. Ludwig automatically transform inputs into lower cases, so we will also convert the prompt to lower case
+def generate_prompt(instruction, input):
+  prompt_template = f"""below is an instruction that describes a task, paired with an input that may provide further context. write a response that appropriately completes the request.
+### instruction: {instruction}
+### input: {input}
+### response:"""
+  return prompt_template.lower()
+
+# use this function to get generated content
+def generate_text(instruction, input):
+  prompt = generate_prompt(instruction, input)
+  inputs = tokenizer(prompt, return_tensors="pt")
+  with torch.no_grad():
+    outputs = model.generate(input_ids=inputs["input_ids"].to("cuda"), max_new_tokens=50)
+    generated_text = tokenizer.batch_decode(outputs.detach().cpu().numpy(), skip_special_tokens=True)[0].split("### response:")[-1].strip()
+  return generated_text
+
+generate_text('example instruction', 'example input')
+
 ```
 
 ## Task: Optimize the dummy LLM

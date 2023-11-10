@@ -530,8 +530,15 @@ Downloading (…)lve/main/config.json: 100%
 
 INFO:ludwig.utils.print_utils:
 
-INFO:ludwig.utils.print_utils:╒════════════════════════╕
-INFO:ludwig.utils.print_utils:│ EXPERIMENT DESCRIPTION │
-INFO:ludwig.utils.print_utils:╘════════════════════════╛
+INFO:ludwig.utils.print_utils:  ╒════════════════════════╕
+
+INFO:ludwig.utils.print_utils:  │ EXPERIMENT DESCRIPTION │
+
+INFO:ludwig.utils.print_utils:  ╘════════════════════════╛
+
 INFO:ludwig.utils.print_utils:
-INFO:ludwig.api
+
+INFO:ludwig.utils.print_utils:
+
+INFO:ludwig.api:
+

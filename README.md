@@ -765,22 +765,23 @@ FileNotFoundError                         Traceback (most recent call last)
 
 62 results = model.train(dataset=df_train)
 
-/usr/local/lib/python3.10/dist-packages/torch/serialization.py in init(self, name, mode)
+/usr/local/lib/python3.10/dist-packages/torch/serialization.py in __init__(self, name, mode)
 
-250 class _open_file(_opener):
-
-251 def init(self, name, mode):
-
---> 252 super().init(open(name, mode))
-
-253
-
-254 def exit(self, *args):
-
-FileNotFoundError: [Errno 2] No such file or directory: '/content/results/api_experiment_run/model/training_checkpoints/best.ckpt'
-
+    250 class _open_file(_opener):
+    
+    251     def __init__(self, name, mode):
+    
+    --> 252         super().__init__(open(name, mode))
+    
+    253 
+    
+    254     def __exit__(self, *args):
+    
+    FileNotFoundError: [Errno 2] No such file or directory: '/content/results/api_experiment_run/model/training_checkpoints/best.ckpt'
+    
 ## Perform Inference
 
 We can now use the model we fine-tuned above to make predictions on some test examples to see whether fine-tuning the large language model improve its ability to follow instructions/the tasks we're asking it to perform.
 
 
+The model-path can be seen at the end of training/fine-tuning, as seen in this screenshot. You need to get a Huggingface Write API to upload
